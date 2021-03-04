@@ -1,13 +1,13 @@
 package exception;
+
 import java.util.Scanner;
+
 /**
  * 4-1 : 課題内容
  *
- * よく目にする例外処理に関して、課題をこなしていただきます。
- * 問①〜③の指示に従い必要な処理を記述してください。
+ * よく目にする例外処理に関して、課題をこなしていただきます。 問①〜③の指示に従い必要な処理を記述してください。
  *
- * 実行時はScannerを利用して処理の確認を行います。
- * コンソールへ必要なパラメーター入力し、Enterを押下して実装結果を確認していきましょう！
+ * 実行時はScannerを利用して処理の確認を行います。 コンソールへ必要なパラメーター入力し、Enterを押下して実装結果を確認していきましょう！
  *
  */
 public class ExException {
@@ -23,6 +23,7 @@ public class ExException {
     private static final String CONST_COMMON_MSG_ERROR_EXCEPTION = "エラー: 入力値が不正です。";
     private static final String CONST_MSG_NOT_EXCEPTION_TRIGGER = "例外の発生しないパラメーターです。";
     private static final String CONST_MSG_NULLPO = "ヌルポです。";
+
     public static void main(String[] args) {
         // 変数定義
         int parameter;
@@ -34,46 +35,45 @@ public class ExException {
             try {
                 final int execute = sc.nextInt();
                 // 早期処理戻し
-                if (execute == -1) break;
+                if (execute == -1)
+                    break;
                 // オペレーションエラー
                 if (execute != 1) {
-                      System.out.println(CONST_COMMON_MSG_ERROR_EXCEPTION);
-                      continue;
+                    System.out.println(CONST_COMMON_MSG_ERROR_EXCEPTION);
+                    continue;
                 }
                 System.out.println(CONST_COMMON_TASK_INPUT_NAME);
                 parameter = sc.nextInt();
                 switch (parameter) {
-                case CONST_EXCEPTION_TRIGER_NULL:
-                    nageruyatu();
-                    // 問①: 強制的に「NullPointerException」を発生させるメソッドを作成し、呼び出しなさい。
-                    // 問①は最下部にもあります。
-                    // ルール: ここへ作成したメソッドを呼び出す
-                    break;
-                case CONST_EXCEPTION_TRIGER_ARRAY_OUT_OF_BOUNDS:
-                    int[] list = new int[5];
-                    for ( int i = 0; i <= 5; i++ ) {
-                      list[i] = i;
-                      System.out.println(list[i]);
-                    }
-                    // 問②: 「throw」を使用せずに「ArrayIndexOutOfBoundsException」を発生させる処理を記述しなさい。
-                    // Tips: ご自身で配列を準備してください（使用する配列の型、要素数は自由）
-                    // ここへ記述
-                    break;
-                case CONST_EXCEPTION_TRIGER_CAST:
-                    String castedStrValue = (String) CONST_OBJ_FOR_CLASS_CAST;
-                    System.out.println(castedStrValue);
-                    break;
-                default:
-                    System.out.println(CONST_MSG_NOT_EXCEPTION_TRIGGER);
-                    break;
+                    case CONST_EXCEPTION_TRIGER_NULL:
+                        // 問①: 強制的に「NullPointerException」を発生させるメソッドを作成し、呼び出しなさい。
+                        // 問①は最下部にもあります。
+                        // ルール: ここへ作成したメソッドを呼び出す
+                        nageruyatu();
+                        break;
+                    case CONST_EXCEPTION_TRIGER_ARRAY_OUT_OF_BOUNDS:
+                        int[] list = new int[5];
+                        System.out.println(list[5]);
+
+                        // 問②: 「throw」を使用せずに「ArrayIndexOutOfBoundsException」を発生させる処理を記述しなさい。
+                        // Tips: ご自身で配列を準備してください（使用する配列の型、要素数は自由）
+                        // ここへ記述
+                        break;
+                    case CONST_EXCEPTION_TRIGER_CAST:
+                        String castedStrValue = (String) CONST_OBJ_FOR_CLASS_CAST;
+                        System.out.println(castedStrValue);
+                        break;
+                    default:
+                        System.out.println(CONST_MSG_NOT_EXCEPTION_TRIGGER);
+                        break;
                 }
             } catch (NullPointerException e) {
                 printException(e);
             } catch (ArrayIndexOutOfBoundsException e) {
                 printException(e);
-            // 問③: クラスキャストの例外をキャッチしなさい。
-            // ルール: 上述の他の例外同様引、数名は「e」で記述すること。
-            } /* ここへ記述 */catch (ClassCastException e)  {
+                // 問③: クラスキャストの例外をキャッチしなさい。
+                // ルール: 上述の他の例外同様引、数名は「e」で記述すること。
+            } /* ここへ記述 */catch (ClassCastException e) {
                 printException(e);
             } finally {
                 System.out.println("リトライ回数 = " + retryCounter++);
@@ -83,17 +83,18 @@ public class ExException {
         sc.close();
         System.out.println("お疲れ様でした！");
     }
+
     /**
-     * 問①: 以下のルールに沿ってNullPointerExceptionを投げるメソッドを実装しなさい。
-     * ルール1: private static void 任意のメソッド名 throws 上位へ投げるExceptionクラス名 { NullPointerExceptionを発生させる処理 }
-     * ルール2: 例外発生時に設定するメッセージは、定義済みの定数から適当なものを指定してください。
+     * 問①: 以下のルールに沿ってNullPointerExceptionを投げるメソッドを実装しなさい。 ルール1: private static void
+     * 任意のメソッド名 throws 上位へ投げるExceptionクラス名 { NullPointerExceptionを発生させる処理 } ルール2:
+     * 例外発生時に設定するメッセージは、定義済みの定数から適当なものを指定してください。
      */
-     private static void nageruyatu() throws NullPointerException {
-         throw new NullPointerException(CONST_MSG_NULLPO);
-     }
-     /**throw 無理やりエラー起こす　直書き　throws 起きそうだなってやつ　メソッドにつける
+    private static void nageruyatu() throws NullPointerException {
+        throw new NullPointerException(CONST_MSG_NULLPO);
+    }
+
     /**
-     * 例外処理のメッセージを出力
+     * throw 無理やりエラー起こす 直書き throws 起きそうだなってやつ メソッドにつける /** 例外処理のメッセージを出力
      *
      * @param e 発生した例外
      */

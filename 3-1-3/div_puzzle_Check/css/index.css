@@ -1,0 +1,30 @@
+@charset "utf-8";
+/*=============================================
+      index用css divパズル SkillCheck
+      課題と同じく表示されるようhtmlに記述したクラスにスタイルを当てましょう。
+=============================================*/
+.wrapper {
+    margin: 0 auto;
+    width: 400px
+}
+
+/* 共通（ヘッダー・フッター） */
+.header,
+.footer {
+    height: 100px;
+}
+
+/* ヘッダー・フッター */
+.header {
+    background: #141f40;
+}
+.footer {
+    background: #d98d30;
+}
+
+/* 共通 */
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: block;
+}
